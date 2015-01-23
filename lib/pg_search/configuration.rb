@@ -18,7 +18,8 @@ module PgSearch
       def alias(*strings)
         name = Array(strings).compact.join("_")
         # By default, PostgreSQL limits names to 32 characters, so we hash and limit to 32 characters.
-        "pg_search_#{Digest::SHA2.hexdigest(name)}"[0,32]
+        #"pg_search_#{Digest::SHA2.hexdigest(name)}"[0,32]
+        Array(strings).first.to_s == Array(strings).second.to_s.pluralize ? Array(strings).first : Array(strings).second
       end
     end
 
